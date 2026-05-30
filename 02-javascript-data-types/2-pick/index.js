@@ -6,6 +6,10 @@
  */
 export const pick = (obj, ...fields) => {
     const newObj = {}
-    Object.entries(obj).forEach((el) => fields.includes(el[0]) ? newObj[el[0]] = el[1] : null)
+    for (let key in obj) {
+        if (fields.includes(key)) {
+            newObj[key] = obj[key]
+        }
+    }
     return newObj
 };
