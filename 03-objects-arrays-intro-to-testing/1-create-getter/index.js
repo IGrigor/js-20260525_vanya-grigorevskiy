@@ -6,12 +6,11 @@
 export function createGetter(path) {
     const arrPath = path.split('.')
     return function (obj) {
-        let newObj = {...obj}
+        let result = obj
         for (let i = 0; i < arrPath.length; i++) {
-            if (typeof newObj[arrPath[i]] === 'object' && newObj[arrPath[i]] !== null) newObj = newObj[arrPath[i]]
-            else if (!newObj.hasOwnProperty(arrPath[i])) return undefined
-            else return newObj[arrPath[i]]
+            if (result.hasOwnProperty(arrPath[i])) result = result[arrPath[i]]
+            else return undefined
         }
-        return undefined
+        return result
     }
 }
